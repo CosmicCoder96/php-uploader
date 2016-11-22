@@ -112,7 +112,7 @@ catch(PDOException $e)
         echo "<td>$row[user]</td>";
         echo "<td>$row[destination]</td>";
         echo "<td>$row[date]</td>";
-        echo "<td><input type = 'checkbox' name = '$row[name]'' id = '$row[name]'/></td></tr>";
+        echo "<td><input type = 'checkbox' name = 'check_list[]' value = '$row[name]'/></td></tr>";
     }
     echo "</table>";
     echo "<input type = 'submit' value = 'upload selected files'/> ";
