@@ -83,6 +83,27 @@ session_start();
   </div>
 </div>
     <?php
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    //$dbname = "mentor";
+    $dbname="admin";
+    try {
+     $conn = new PDO("mysql:host=$servername;dbname=$dbname",  $username, $password);
+    // set the PDO error mode to exception
+     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    //echo"connection succesful";   
+  
+    }
+catch(PDOException $e)
+    {
+    echo "Connection failed: ";
+    }
+    $try = "select * from uploads where approval =0";
+    $sql_result= $conn->prepare($try);
+    $sql_result->execute();
+    $rows = $sql_result->fetchALL(PDO::FETCH_ASSOC); 
 $option=$_POST['option'];
 $target_dir = "directory/admin/";
 $target_file = $target_dir . basename(str_replace(' ','-',$_FILES["fileToUpload"]["name"]));
