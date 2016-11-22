@@ -106,11 +106,12 @@ catch(PDOException $e)
     foreach($_POST['check_list'] as $check)
     {
         echo $check; 
-        $try = "update uploads set approval = 1 where name = '".$check."'";
+        $str = explode("-|*#-#*|-",$check);
+        $try = "update uploads set approval = 1 where name = '".$str[0]."'";
         $sql_result= $conn->prepare($try);
         $sql_result->execute();
-        $target_file='directory/Movies/'.$check;
-        rename('directory/admin/'.$check, $target_file);
+        $target_file='directory/'.$str[1].'/'.$str[0];
+        rename('directory/admin/'.$str[0], $target_file);
 
 
        // move_uploaded_file(, $target_file);

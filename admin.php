@@ -108,11 +108,12 @@ catch(PDOException $e)
   <th>Name</th><th>User</th><th>Destination</th><th>Date</th><th>Select</th>";
 
     foreach ($rows as $row) {
+
         echo "<tr><td><a href=directory/admin/$row[name]>".$row['name']."</a></td>";
         echo "<td>$row[user]</td>";
         echo "<td>$row[destination]</td>";
         echo "<td>$row[date]</td>";
-        echo "<td><input type = 'checkbox' name = 'check_list[]' value = '$row[name]'/></td></tr>";
+        echo "<td><input type = 'checkbox' name = 'check_list[]' value = '$row[name]-|*#-#*|-$row[destination]'/></td></tr>";
     }
     echo "</table>";
     echo "<input type = 'submit' value = 'upload selected files'/> ";
