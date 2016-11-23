@@ -20,7 +20,23 @@ session_start();
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script src="https://use.fontawesome.com/994d7c72ea.js"></script>
 	<script src = "js/bootbox.js"></script>
-	
+<style>
+#bar_blank {
+  border: solid 1px #000;
+  height: 20px;
+  width: 300px;
+}
+
+#bar_color {
+  background-color: #006666;
+  height: 20px;
+  width: 0px;
+}
+
+#bar_blank, #hidden_iframe {
+  display: none;
+}
+</style>	
 </head>
 <body>
 	<nav class = "navbar navbar-default">
@@ -94,8 +110,10 @@ session_start();
 
 <br>
 
-<form action="upload.php" method="post" enctype="multipart/form-data">
-	    Select directory to upload to:
+<form action="upload.php" method="post" enctype="multipart/form-data" id = "myForm"  target="hidden_iframe">
+ <input type="hidden" value="myForm"
+    name="<?php echo ini_get("session.upload_progress.name"); ?>">	   
+ Select directory to upload to:
     <select class="form-control" name='option'>
   <option>Movies</option>
   <option>Songs</option>
@@ -112,7 +130,14 @@ session_start();
   
   <button type="submit" class="btn btn-default">Submit</button>
 </form>
+  <iframe id="hidden_iframe" name="hidden_iframe" src="upload.php"></iframe>
+
+<div id="bar_blank">
+   <div id="bar_color"></div>
+  </div>
+  <div id="status"></div>
 </body>
+<script src = 'js/progressBar.js'></script>
 </html>
 
 
