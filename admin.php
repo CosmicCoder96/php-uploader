@@ -3,8 +3,10 @@ session_start();
 
     $fname=$_SESSION['fname'];
     $user=$_SESSION['user'];
-    if($user=="" ||($user!="iit2015036" && $user!="iit2014141"))
+    if($user=="")
     {
+	//if($user!="iit2015036" && $user!="iit2014141")
+	//echo"<script>alert(2);</script>";	
         header("Location: login.php");
     }
     ?>
@@ -83,6 +85,7 @@ session_start();
   </div>
 </div>
     <?php
+	 if(!($user!="iit2015036" && $user!="iit2014141")){
     $servername = "localhost";
     $username = "root";
     $password = "";
@@ -127,5 +130,9 @@ echo "<a href=$phpfile>".basename($phpfile)."</a><br>";
 
 
 
-echo "<a href = 'login.php' >Go back</a>";
+echo "<a href = 'login.php' >Go back</a>";}
+else
+{
+echo "<h1>Admin area - access denied</h1><br><a href = 'login.php'>Go Back</a><script>bootbox.alert('you are not an admin, are you?');</script>";
+}
 ?>

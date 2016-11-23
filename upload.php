@@ -15,8 +15,10 @@ session_start();
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+   
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script src="https://use.fontawesome.com/994d7c72ea.js"></script>
+
+    <script src="https://use.fontawesome.com/994d7c72ea.js"></script>
     <script src = "js/bootbox.js"></script>
     </head>
 <body>
@@ -38,7 +40,7 @@ session_start();
                     <li><a href = "#" data-toggle="modal" data-target="#myModal">Contact</a></li>
                 </div>
                 <div class = "nav navbar-nav navbar-right">
-                    
+                    <li><a href = "admin.php">Admin</a></li>                  
                     <li><a href = "logout.php">Logout</a></li>
                 </div>
             </div>
@@ -88,36 +90,17 @@ $target_dir = "directory/admin/";
 $target_file = $target_dir . basename(str_replace(' ','-',$_FILES["fileToUpload"]["name"]));
 $uploadOk = 1;
 $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-/*// Check if image file is a actual image or fake image
-if(isset($_POST["submit"])) {
-    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-    if($check !== false) {
-        echo "File is an image - " . $check["mime"] . ".";
-        $uploadOk = 1;
-    } else {
-        echo "File is not an image.";
-        $uploadOk = 0;
-    }
-}
-*/
-// Check if file already exists
+
 if (file_exists($target_file)) {
     echo "Sorry, file already exists.";
     $uploadOk = 0;
 }
-//echo $_POST['option'];
-// Check file size
+
 /*if ($_FILES["fileToUpload"]["size"] > 50000000) {
     echo "Sorry, your file is too large.";
     $uploadOk = 0;
 }*/
-/*// Allow certain file formats
-if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-&& $imageFileType != "gif" ) {
-    echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-    $uploadOk = 0;
-}*/
-// Check if $uploadOk is set to 0 by an error
+
 if ($uploadOk == 0) {
     echo "Sorry, your file was not uploaded.";
 // if everything is ok, try to upload file
